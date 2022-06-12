@@ -6,9 +6,8 @@ import logic.RadixSort;
 import util.ArrayUtils;
 import util.JTableUtils;
 import util.SwingUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class SortDemoFrame extends JFrame {
     private JButton buttonSample1;
@@ -68,24 +67,13 @@ public class SortDemoFrame extends JFrame {
     }
 
     public static int[] deleteDuplicates (int[] arr) {
-        int[] b = new int[arr.length];
-        int curIndex = 0;
-        for (int i: arr) {
-            if (!contains(b, i)) {
-                b[curIndex] = i;
-                curIndex++;
+        int temp = 0;
+        for (int i=0; i< arr.length-1; i++)
+            if (arr[i] != arr[i+1]) {
+                arr[temp++] = arr[i];
             }
-        }
-        return Arrays.copyOf(b, curIndex);
-    }
-
-    public static boolean contains(int[] arr, int num) {
-        for (int i : arr) {
-            if (i == num) {
-                return true;
-            }
-        }
-        return false;
+        arr[temp++] = arr[arr.length-1];
+        return arr;
     }
 
     public static int[][] listToArr (ArrayList<int[]> list) {
